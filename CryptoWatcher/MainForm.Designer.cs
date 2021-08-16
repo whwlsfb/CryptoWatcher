@@ -57,6 +57,9 @@ namespace CryptoWatcher
             // 
             // mainList
             // 
+            this.mainList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.mainList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.cacName,
             this.currentPrice,
@@ -106,26 +109,26 @@ namespace CryptoWatcher
             // list_add
             // 
             this.list_add.Name = "list_add";
-            this.list_add.Size = new System.Drawing.Size(180, 22);
+            this.list_add.Size = new System.Drawing.Size(100, 22);
             this.list_add.Text = "添加";
             this.list_add.Click += new System.EventHandler(this.list_add_Click);
             // 
             // list_modify
             // 
             this.list_modify.Name = "list_modify";
-            this.list_modify.Size = new System.Drawing.Size(180, 22);
+            this.list_modify.Size = new System.Drawing.Size(100, 22);
             this.list_modify.Text = "修改";
             this.list_modify.Click += new System.EventHandler(this.list_modify_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(97, 6);
             // 
             // list_delete
             // 
             this.list_delete.Name = "list_delete";
-            this.list_delete.Size = new System.Drawing.Size(180, 22);
+            this.list_delete.Size = new System.Drawing.Size(100, 22);
             this.list_delete.Text = "删除";
             this.list_delete.Click += new System.EventHandler(this.list_delete_Click);
             // 

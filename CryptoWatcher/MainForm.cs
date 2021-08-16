@@ -70,7 +70,7 @@ namespace CryptoWatcher
             if (item != null)
             {
                 var listItem = new ListViewItem();
-                var key = $"{item.CybermoneyName.ToUpper()}/{item.CurrencyName.ToUpper()}";
+                var key = item.Key;
                 listItem.Text = key;
                 listItem.SubItems.Add(item.Price.ToString());
                 listItem.SubItems.Add((item.RefreshInterval / 1000).ToString() + "秒");
@@ -97,7 +97,7 @@ namespace CryptoWatcher
                 var newItem = ItemEdit.Edit(listItem.Tag as CryptoItem);
                 if (newItem != null)
                 {
-                    var key = $"{newItem.CybermoneyName.ToUpper()}/{newItem.CurrencyName.ToUpper()}";
+                    var key = newItem.Key;
                     listItem.Text = key;
                     listItem.SubItems[1].Text = newItem.Price.ToString();
                     listItem.SubItems[2].Text = (newItem.RefreshInterval / 1000).ToString() + "秒";

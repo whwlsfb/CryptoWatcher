@@ -10,7 +10,8 @@ namespace CryptoWatcher.Models
 {
     public class CryptoItem
     {
-        
+        [JsonIgnore]
+        public string Key => $"{CybermoneyName.ToUpper()}/{CurrencyName.ToUpper()}";
         public string CybermoneyName { get; set; }
         public string CurrencyName { get; set; }
         public int RefreshInterval { get; set; }

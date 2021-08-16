@@ -37,7 +37,7 @@ namespace CryptoWatcher.Common
                         {
                             if (!juger.Trigged)
                             {
-                                Notify("上涨提醒", $"{CryptoItem.CybermoneyName}/{CryptoItem.CurrencyName} 目前价格为: {CryptoItem.Price}");
+                                Notify("上涨提醒", $"{CryptoItem.Key} 目前价格为: {CryptoItem.Price}");
                                 juger.Trigged = true;
                             }
                             break;
@@ -55,7 +55,7 @@ namespace CryptoWatcher.Common
                         {
                             if (!juger.Trigged)
                             {
-                                Notify("下跌提醒", $"{CryptoItem.CybermoneyName}/{CryptoItem.CurrencyName} 目前价格为: {CryptoItem.Price}");
+                                Notify("下跌提醒", $"{CryptoItem.Key} 目前价格为: {CryptoItem.Price}");
                                 juger.Trigged = true;
                             }
                             break;
@@ -71,7 +71,7 @@ namespace CryptoWatcher.Common
                         {
                             if (!juger.Trigged)
                             {
-                                Notify("到达设定值", $"{CryptoItem.CybermoneyName}/{CryptoItem.CurrencyName} 目前价格为: {CryptoItem.Price}");
+                                Notify("到达设定值", $"{CryptoItem.Key} 目前价格为: {CryptoItem.Price}");
                                 juger.Trigged = true;
                             }
                         }
