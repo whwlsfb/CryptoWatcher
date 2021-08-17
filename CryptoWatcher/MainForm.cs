@@ -12,6 +12,7 @@ using System.IO;
 using System.Threading;
 using Newtonsoft.Json;
 using System.Windows.Forms;
+using static System.Windows.Forms.ListViewItem;
 
 namespace CryptoWatcher
 {
@@ -135,5 +136,36 @@ namespace CryptoWatcher
             }
         }
 
+        private void exit_btn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void topMode_Click(object sender, EventArgs e)
+        {
+            TopMost = topMode.Checked;
+        }
+
+        private void minMode_Click(object sender, EventArgs e)
+        {
+            if (minMode.Checked)
+            {
+                FormBorderStyle = FormBorderStyle.None;
+                AllowTransparency = true;
+                ShowInTaskbar = false;
+                refreshInterval.Width = 0;
+                workerStatus.Width = 0;
+                Opacity = 0.7;
+            }
+            else
+            {
+                FormBorderStyle = FormBorderStyle.Sizable;
+                AllowTransparency = false;
+                ShowInTaskbar = true;
+                refreshInterval.Width = 100;
+                workerStatus.Width = 200;
+                Opacity = 1;
+            }
+        }
     }
 }

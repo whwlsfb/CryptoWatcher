@@ -42,14 +42,19 @@ namespace CryptoWatcher
             this.list_modify = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.list_delete = new System.Windows.Forms.ToolStripMenuItem();
+            this.iconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.topMode = new System.Windows.Forms.ToolStripMenuItem();
+            this.exit_btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.minMode = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.listMenu.SuspendLayout();
+            this.iconMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon
             // 
             this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.notifyIcon.BalloonTipText = "BBBBBBBBBBBBBBBBBB";
-            this.notifyIcon.BalloonTipTitle = "AAAAA";
+            this.notifyIcon.ContextMenuStrip = this.iconMenu;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "CryptoWatcher";
             this.notifyIcon.Visible = true;
@@ -132,6 +137,44 @@ namespace CryptoWatcher
             this.list_delete.Text = "删除";
             this.list_delete.Click += new System.EventHandler(this.list_delete_Click);
             // 
+            // iconMenu
+            // 
+            this.iconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.topMode,
+            this.minMode,
+            this.toolStripSeparator2,
+            this.exit_btn});
+            this.iconMenu.Name = "iconMenu";
+            this.iconMenu.Size = new System.Drawing.Size(181, 98);
+            // 
+            // topMode
+            // 
+            this.topMode.CheckOnClick = true;
+            this.topMode.Name = "topMode";
+            this.topMode.Size = new System.Drawing.Size(180, 22);
+            this.topMode.Text = "窗口总在最前";
+            this.topMode.Click += new System.EventHandler(this.topMode_Click);
+            // 
+            // exit_btn
+            // 
+            this.exit_btn.Name = "exit_btn";
+            this.exit_btn.Size = new System.Drawing.Size(180, 22);
+            this.exit_btn.Text = "退出";
+            this.exit_btn.Click += new System.EventHandler(this.exit_btn_Click);
+            // 
+            // minMode
+            // 
+            this.minMode.CheckOnClick = true;
+            this.minMode.Name = "minMode";
+            this.minMode.Size = new System.Drawing.Size(180, 22);
+            this.minMode.Text = "迷你模式";
+            this.minMode.Click += new System.EventHandler(this.minMode_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -144,6 +187,7 @@ namespace CryptoWatcher
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.listMenu.ResumeLayout(false);
+            this.iconMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -161,6 +205,11 @@ namespace CryptoWatcher
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem list_delete;
         private System.Windows.Forms.ColumnHeader workerStatus;
+        private System.Windows.Forms.ContextMenuStrip iconMenu;
+        private System.Windows.Forms.ToolStripMenuItem topMode;
+        private System.Windows.Forms.ToolStripMenuItem minMode;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem exit_btn;
     }
 }
 
