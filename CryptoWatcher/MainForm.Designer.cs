@@ -32,6 +32,11 @@ namespace CryptoWatcher
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.iconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.topMode = new System.Windows.Forms.ToolStripMenuItem();
+            this.minMode = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.exit_btn = new System.Windows.Forms.ToolStripMenuItem();
             this.mainList = new System.Windows.Forms.ListView();
             this.cacName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.currentPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -42,13 +47,10 @@ namespace CryptoWatcher
             this.list_modify = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.list_delete = new System.Windows.Forms.ToolStripMenuItem();
-            this.iconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.topMode = new System.Windows.Forms.ToolStripMenuItem();
-            this.exit_btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.minMode = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.listMenu.SuspendLayout();
+            this.winlock = new System.Windows.Forms.ToolStripMenuItem();
+            this.mousetransparent = new System.Windows.Forms.ToolStripMenuItem();
             this.iconMenu.SuspendLayout();
+            this.listMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon
@@ -59,6 +61,47 @@ namespace CryptoWatcher
             this.notifyIcon.Text = "CryptoWatcher";
             this.notifyIcon.Visible = true;
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
+            // 
+            // iconMenu
+            // 
+            this.iconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.topMode,
+            this.minMode,
+            this.toolStripSeparator2,
+            this.exit_btn});
+            this.iconMenu.Name = "iconMenu";
+            this.iconMenu.Size = new System.Drawing.Size(181, 98);
+            // 
+            // topMode
+            // 
+            this.topMode.CheckOnClick = true;
+            this.topMode.Name = "topMode";
+            this.topMode.Size = new System.Drawing.Size(180, 22);
+            this.topMode.Text = "窗口总在最前";
+            this.topMode.Click += new System.EventHandler(this.topMode_Click);
+            // 
+            // minMode
+            // 
+            this.minMode.CheckOnClick = true;
+            this.minMode.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.winlock,
+            this.mousetransparent});
+            this.minMode.Name = "minMode";
+            this.minMode.Size = new System.Drawing.Size(180, 22);
+            this.minMode.Text = "迷你模式";
+            this.minMode.Click += new System.EventHandler(this.minMode_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // exit_btn
+            // 
+            this.exit_btn.Name = "exit_btn";
+            this.exit_btn.Size = new System.Drawing.Size(180, 22);
+            this.exit_btn.Text = "退出";
+            this.exit_btn.Click += new System.EventHandler(this.exit_btn_Click);
             // 
             // mainList
             // 
@@ -78,6 +121,7 @@ namespace CryptoWatcher
             this.mainList.Name = "mainList";
             this.mainList.Size = new System.Drawing.Size(669, 349);
             this.mainList.TabIndex = 0;
+            this.mainList.TileSize = new System.Drawing.Size(100, 28);
             this.mainList.UseCompatibleStateImageBehavior = false;
             this.mainList.View = System.Windows.Forms.View.Details;
             // 
@@ -137,43 +181,22 @@ namespace CryptoWatcher
             this.list_delete.Text = "删除";
             this.list_delete.Click += new System.EventHandler(this.list_delete_Click);
             // 
-            // iconMenu
+            // winlock
             // 
-            this.iconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.topMode,
-            this.minMode,
-            this.toolStripSeparator2,
-            this.exit_btn});
-            this.iconMenu.Name = "iconMenu";
-            this.iconMenu.Size = new System.Drawing.Size(181, 98);
+            this.winlock.CheckOnClick = true;
+            this.winlock.Enabled = false;
+            this.winlock.Name = "winlock";
+            this.winlock.Size = new System.Drawing.Size(180, 22);
+            this.winlock.Text = "锁定位置";
             // 
-            // topMode
+            // mousetransparent
             // 
-            this.topMode.CheckOnClick = true;
-            this.topMode.Name = "topMode";
-            this.topMode.Size = new System.Drawing.Size(180, 22);
-            this.topMode.Text = "窗口总在最前";
-            this.topMode.Click += new System.EventHandler(this.topMode_Click);
-            // 
-            // exit_btn
-            // 
-            this.exit_btn.Name = "exit_btn";
-            this.exit_btn.Size = new System.Drawing.Size(180, 22);
-            this.exit_btn.Text = "退出";
-            this.exit_btn.Click += new System.EventHandler(this.exit_btn_Click);
-            // 
-            // minMode
-            // 
-            this.minMode.CheckOnClick = true;
-            this.minMode.Name = "minMode";
-            this.minMode.Size = new System.Drawing.Size(180, 22);
-            this.minMode.Text = "迷你模式";
-            this.minMode.Click += new System.EventHandler(this.minMode_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.mousetransparent.CheckOnClick = true;
+            this.mousetransparent.Enabled = false;
+            this.mousetransparent.Name = "mousetransparent";
+            this.mousetransparent.Size = new System.Drawing.Size(180, 22);
+            this.mousetransparent.Text = "鼠标穿透";
+            this.mousetransparent.CheckedChanged += new System.EventHandler(this.mousetransparent_CheckedChanged);
             // 
             // MainForm
             // 
@@ -186,8 +209,9 @@ namespace CryptoWatcher
             this.Deactivate += new System.EventHandler(this.MainForm_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.listMenu.ResumeLayout(false);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frm_MouseDown);
             this.iconMenu.ResumeLayout(false);
+            this.listMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -210,6 +234,8 @@ namespace CryptoWatcher
         private System.Windows.Forms.ToolStripMenuItem minMode;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem exit_btn;
+        private System.Windows.Forms.ToolStripMenuItem winlock;
+        private System.Windows.Forms.ToolStripMenuItem mousetransparent;
     }
 }
 
