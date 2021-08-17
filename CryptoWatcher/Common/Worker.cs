@@ -26,6 +26,7 @@ namespace CryptoWatcher.Common
             {
                 UpdateStatus("等待...");
                 await Task.Delay(CryptoItem.RefreshInterval);
+                if (Closed) break;
                 try
                 {
                     UpdateStatus("正在获取...");

@@ -133,6 +133,8 @@ namespace CryptoWatcher
                 var listItem = mainList.SelectedItems[0];
                 var item = listItem.Tag as CryptoItem;
                 RemoveWorker($"{item.CybermoneyName.ToUpper()}/{item.CurrencyName.ToUpper()}");
+                mainList.Items.Remove(listItem);
+                SaveConfig();
             }
         }
 
