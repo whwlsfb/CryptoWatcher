@@ -26,6 +26,7 @@ namespace CryptoWatcher
             Icon = Resources.mainIcon;
             notifyIcon.Icon = Resources.mainIcon;
         }
+
         #region 最小化到托盘事件托管
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -104,6 +105,63 @@ namespace CryptoWatcher
                 SetWindowLong(Handle, GWL_EXSTYLE, oldStyle);
         }
         #endregion
+        #region 迷你模式下修改窗体大小
+        const int HTLEFT = 10;
+        const int HTRIGHT = 11;
+        const int HTTOP = 12;
+        const int HTTOPLEFT = 13;
+        const int HTTOPRIGHT = 14;
+        const int HTBOTTOM = 15;
+        const int HTBOTTOMLEFT = 0x10;
+        const int HTBOTTOMRIGHT = 17;
+
+        protected override void WndProc(ref Message m)
+        {
+            if (minMode.Checked)
+                switch (m.Msg)
+                {
+                    case 0x0084:
+                        base.WndProc(ref m);
+                        Point vPoint = new Point((int)m.LParam & 0xFFFF,
+                            (int)m.LParam >> 16 & 0xFFFF);
+                        vPoint = PointToClient(vPoint);
+                        if (vPoint.X <= 5)
+                            if (vPoint.Y <= 5)
+                                m.Result = (IntPtr)HTTOPLEFT;
+                            else if (vPoint.Y >= ClientSize.Height - 5)
+                                m.Result = (IntPtr)HTBOTTOMLEFT;
+                            else m.Result = (IntPtr)HTLEFT;
+                        else if (vPoint.X >= ClientSize.Width - 5)
+                            if (vPoint.Y <= 5)
+                                m.Result = (IntPtr)HTTOPRIGHT;
+                            else if (vPoint.Y >= ClientSize.Height - 5)
+                                m.Result = (IntPtr)HTBOTTOMRIGHT;
+                            else m.Result = (IntPtr)HTRIGHT;
+                        else if (vPoint.Y <= 5)
+                            m.Result = (IntPtr)HTTOP;
+                        else if (vPoint.Y >= ClientSize.Height - 5)
+                            m.Result = (IntPtr)HTBOTTOM;
+                        break;
+                    case 0x0201:
+                        Point point = Control.MousePosition;
+                        point = PointToClient(point);
+                        if (point.X < this.Width - 100 && point.Y < 30)
+                        {
+                            m.Msg = 0x00A1;
+                            m.LParam = IntPtr.Zero;
+                            m.WParam = new IntPtr(2);
+                        }
+
+                        base.WndProc(ref m);
+                        break;
+                    default:
+                        base.WndProc(ref m);
+                        break;
+                }
+            else base.WndProc(ref m);
+        }
+        #endregion
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             LoadConfig();
@@ -209,6 +267,16 @@ namespace CryptoWatcher
         }
         private void minMode_Click(object sender, EventArgs e)
         {
+            if (mainList.Items.Count == 0)
+            {
+                minMode.Checked = false;
+                var dialogResult = MessageBox.Show("请至少添加一个币种后再启动迷你模式。\r\n是否立即添加？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    list_add_Click(sender, e);
+                }
+                return;
+            }
             if (minMode.Checked)
             {
                 FormBorderStyle = FormBorderStyle.None;
@@ -239,6 +307,14 @@ namespace CryptoWatcher
         {
             if (mousetransparent.Enabled)
                 SetPenetrate(mousetransparent.Checked);
+        }
+
+        private void mainList_SizeChanged(object sender, EventArgs e)
+        {
+            if (mainList.Width < 94)
+                mainList.TileSize = new Size(mainList.Width - 6, mainList.TileSize.Height);
+            else
+                mainList.TileSize = new Size(100, mainList.TileSize.Height);
         }
     }
 }

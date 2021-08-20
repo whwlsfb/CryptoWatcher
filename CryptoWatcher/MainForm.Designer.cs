@@ -35,6 +35,8 @@ namespace CryptoWatcher
             this.iconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.topMode = new System.Windows.Forms.ToolStripMenuItem();
             this.minMode = new System.Windows.Forms.ToolStripMenuItem();
+            this.winlock = new System.Windows.Forms.ToolStripMenuItem();
+            this.mousetransparent = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exit_btn = new System.Windows.Forms.ToolStripMenuItem();
             this.mainList = new System.Windows.Forms.ListView();
@@ -47,8 +49,6 @@ namespace CryptoWatcher
             this.list_modify = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.list_delete = new System.Windows.Forms.ToolStripMenuItem();
-            this.winlock = new System.Windows.Forms.ToolStripMenuItem();
-            this.mousetransparent = new System.Windows.Forms.ToolStripMenuItem();
             this.iconMenu.SuspendLayout();
             this.listMenu.SuspendLayout();
             this.SuspendLayout();
@@ -70,13 +70,13 @@ namespace CryptoWatcher
             this.toolStripSeparator2,
             this.exit_btn});
             this.iconMenu.Name = "iconMenu";
-            this.iconMenu.Size = new System.Drawing.Size(181, 98);
+            this.iconMenu.Size = new System.Drawing.Size(149, 76);
             // 
             // topMode
             // 
             this.topMode.CheckOnClick = true;
             this.topMode.Name = "topMode";
-            this.topMode.Size = new System.Drawing.Size(180, 22);
+            this.topMode.Size = new System.Drawing.Size(148, 22);
             this.topMode.Text = "窗口总在最前";
             this.topMode.Click += new System.EventHandler(this.topMode_Click);
             // 
@@ -87,19 +87,36 @@ namespace CryptoWatcher
             this.winlock,
             this.mousetransparent});
             this.minMode.Name = "minMode";
-            this.minMode.Size = new System.Drawing.Size(180, 22);
+            this.minMode.Size = new System.Drawing.Size(148, 22);
             this.minMode.Text = "迷你模式";
             this.minMode.Click += new System.EventHandler(this.minMode_Click);
+            // 
+            // winlock
+            // 
+            this.winlock.CheckOnClick = true;
+            this.winlock.Enabled = false;
+            this.winlock.Name = "winlock";
+            this.winlock.Size = new System.Drawing.Size(124, 22);
+            this.winlock.Text = "锁定位置";
+            // 
+            // mousetransparent
+            // 
+            this.mousetransparent.CheckOnClick = true;
+            this.mousetransparent.Enabled = false;
+            this.mousetransparent.Name = "mousetransparent";
+            this.mousetransparent.Size = new System.Drawing.Size(124, 22);
+            this.mousetransparent.Text = "鼠标穿透";
+            this.mousetransparent.CheckedChanged += new System.EventHandler(this.mousetransparent_CheckedChanged);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(145, 6);
             // 
             // exit_btn
             // 
             this.exit_btn.Name = "exit_btn";
-            this.exit_btn.Size = new System.Drawing.Size(180, 22);
+            this.exit_btn.Size = new System.Drawing.Size(148, 22);
             this.exit_btn.Text = "退出";
             this.exit_btn.Click += new System.EventHandler(this.exit_btn_Click);
             // 
@@ -124,6 +141,7 @@ namespace CryptoWatcher
             this.mainList.TileSize = new System.Drawing.Size(100, 28);
             this.mainList.UseCompatibleStateImageBehavior = false;
             this.mainList.View = System.Windows.Forms.View.Details;
+            this.mainList.SizeChanged += new System.EventHandler(this.mainList_SizeChanged);
             // 
             // cacName
             // 
@@ -180,23 +198,6 @@ namespace CryptoWatcher
             this.list_delete.Size = new System.Drawing.Size(100, 22);
             this.list_delete.Text = "删除";
             this.list_delete.Click += new System.EventHandler(this.list_delete_Click);
-            // 
-            // winlock
-            // 
-            this.winlock.CheckOnClick = true;
-            this.winlock.Enabled = false;
-            this.winlock.Name = "winlock";
-            this.winlock.Size = new System.Drawing.Size(180, 22);
-            this.winlock.Text = "锁定位置";
-            // 
-            // mousetransparent
-            // 
-            this.mousetransparent.CheckOnClick = true;
-            this.mousetransparent.Enabled = false;
-            this.mousetransparent.Name = "mousetransparent";
-            this.mousetransparent.Size = new System.Drawing.Size(180, 22);
-            this.mousetransparent.Text = "鼠标穿透";
-            this.mousetransparent.CheckedChanged += new System.EventHandler(this.mousetransparent_CheckedChanged);
             // 
             // MainForm
             // 
