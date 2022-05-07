@@ -8,7 +8,7 @@ namespace CryptoWatcher.Common
     {
         public static async Task<string> GetCurrentPrice(string fsym, string tsyms = "usdt")
         {
-            var resp = await $"https://api.huobi.li/market/trade?symbol={fsym}{tsyms}".GetStringAsync();
+            var resp = await $"https://api.huobi.com/market/trade?symbol={fsym}{tsyms}".GetStringAsync();
             JObject _jObject = JObject.Parse(resp);
             return _jObject["tick"]["data"][0]["price"].ToString();
         }
